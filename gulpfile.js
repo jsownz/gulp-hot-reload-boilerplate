@@ -37,7 +37,7 @@ gulp.task('build-styles', function () {
   gulp
     .src('./src/main.scss')
     .pipe(sass())
-    .pipe(gulp.dest('./src/main.css'))
+    .pipe(gulp.dest('./src/'))
 })
 
 gulp.task('watch', function () {
@@ -65,6 +65,6 @@ gulp.task('dist', ['dist-backend', 'dist-frontend'], function() {
 
 })
 
-gulp.task('default', ['build-backend', 'watch'], function () {
+gulp.task('default', ['build-backend', 'build-styles', 'watch'], function () {
   gutil.log('watch')
 })
