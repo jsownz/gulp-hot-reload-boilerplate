@@ -12,13 +12,24 @@ module.exports = {
     publicPath: '/'
   },
   plugins: [
-    new HTMLWebpackPlugin({title: 'Hot Reload'})
+    new HTMLWebpackPlugin({
+      title: 'Testing',
+      hash: true,
+      inject: true,
+      template: path.join(__dirname, 'views/index.ejs')
+    })
   ],
   module: {
-    loaders: [{
-      test: /\.jsx?$/,
-      loaders: ['babel'],
-       exclude: /node_modules/
-    }]
+    loaders: [
+      {
+        test: /\.jsx?$/,
+        loaders: ['babel'],
+        exclude: /node_modules/
+      },
+      {
+        test: /\.ejs$/, 
+        loader: 'ejs-html?title=The%20Big%20Gatsby&production'
+      }
+    ]
   }
 };

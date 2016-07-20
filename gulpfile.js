@@ -53,7 +53,7 @@ gulp.task('dist-backend', function () {
     .pipe(gulp.dest('build'))
 })
 
-gulp.task('dist-frontend', function () {
+gulp.task('dist-frontend', ['build-styles'], function () {
   process.env.NODE_ENV = 'production'
   gulp
     .src('./src/application.js')
