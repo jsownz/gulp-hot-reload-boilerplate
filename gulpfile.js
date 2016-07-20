@@ -3,6 +3,8 @@ var webpackStream = require('webpack-stream')
 //var reload = require('./../gulp-hot-reload/src/index')
 var reload = require('gulp-hot-reload')
 var webpack = require('webpack')
+var sass = require('gulp-sass')
+var sourcemaps = require('gulp-sourcemaps')
 var gutil = require('gulp-util')
 var path = require('path')
 
@@ -31,8 +33,16 @@ gulp.task('build-backend', () => {
     }))
 })
 
+gulp.task('build-styles', function () {
+  gulp
+    .src('./src/main.scss')
+    .pipe(sass())
+    .pipe(gulp.dest('./src/main.css'))
+})
+
 gulp.task('watch', function () {
   gulp.watch('src/**/*.js', ['build-backend'])
+  gulp.watch('src/**/*.scss', ['build-styles'])
 })
 
 gulp.task('dist-backend', function () {
